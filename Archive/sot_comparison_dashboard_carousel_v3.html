@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structure of Thought | Diagram Generation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --gt-color: #0ea5e9;
+      --good-color: #10b981;
+      --bad-color: #f43f5e;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 1.5rem 2.5rem 1.5rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary), #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); }
+
+    .provenance {
+      max-width: 980px;
+      margin: 1.25rem auto 0 auto;
+      padding: 1rem 1.25rem;
+      border-radius: 16px;
+      background: rgba(79, 70, 229, 0.06);
+      border: 1px solid rgba(79, 70, 229, 0.15);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .provenance strong { color: var(--text-main); }
+
+    /* Main container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem 1.5rem;
+    }
+
+    /* Carousel */
+    .carousel-shell {
+      position: relative;
+      margin-top: 2.25rem;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.25rem 0.25rem 1.75rem 0.25rem;
+      scrollbar-width: none;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+
+    .slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      padding: 0.25rem;
+    }
+
+    .slide-header {
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 0.5rem 0 1.5rem 0;
+      position: relative;
+    }
+    .slide-header::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* Carousel controls */
+    .carousel-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.75rem 0 1rem 0;
+      gap: 1rem;
+      user-select: none;
+    }
+
+    .arrow-btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.06);
+      color: var(--text-main);
+      font-weight: 700;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+    .arrow-btn:hover { background: rgba(15, 23, 42, 0.10); transform: translateY(-1px); }
+    .arrow-btn:active { transform: translateY(0px); }
+    .arrow-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .dots {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex: 1;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.18);
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+    .dot.active { background: var(--primary); transform: scale(1.2); }
+
+    /* Cards */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      margin-top: 1.75rem;
+    }
+    @media (min-width: 1024px) {
+      .grid-container { grid-template-columns: 1fr 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0,0,0,0.02);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.12);
+    }
+
+    .card.gt-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(to bottom, #ffffff, #f0f9ff);
+      border: 1px solid #bae6fd;
+      margin-bottom: 1.25rem;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .gt-title { color: var(--gt-color); }
+    .sot-title { color: var(--good-color); }
+    .nosot-title { color: var(--bad-color); }
+
+    .card p {
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    /* Image wrapper & annotations */
+    .img-wrapper { position: relative; display: inline-block; width: 100%; }
+    .gt-card .img-wrapper { max-width: 860px; }
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      background: #f1f5f9;
+    }
+
+    .box {
+      position: absolute;
+      border: 3px solid;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      z-index: 5;
+      cursor: pointer;
+    }
+    .box:hover { background-color: rgba(255, 255, 255, 0.3); backdrop-filter: blur(2px); }
+
+    .annotation {
+      position: absolute;
+      color: white;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 20px;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      pointer-events: none;
+      letter-spacing: 0.5px;
+    }
+
+    /* Static Colors */
+    .box-gt { border-color: var(--gt-color); }
+    .bg-gt { background-color: var(--gt-color); }
+    .box-good { border-color: var(--good-color); }
+    .bg-good { background-color: var(--good-color); }
+    .box-bad { border-color: var(--bad-color); }
+    .bg-bad { background-color: var(--bad-color); }
+
+    /* Tab animation styles */
+    .interactive-comparison-container { width: 100%; }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 18px; /* below-image placement */
+    }
+    .tab-btn {
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #e2e8f0;
+      border: 2px solid transparent;
+      border-radius: 30px;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .tab-btn:hover { background: #cbd5e1; color: var(--text-main); }
+    .tab-btn.active-sot { background: var(--good-color); color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); border-color: var(--good-color); }
+    .tab-btn.active-bad { background: var(--bad-color); color: white; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4); border-color: var(--bad-color); }
+
+    .tab-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulse-box {
+      from { box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+      to { box-shadow: 0 0 20px currentColor; }
+    }
+    .gt-theme .box { border-color: var(--gt-color); color: var(--gt-color); animation: pulse-box 2s infinite alternate; }
+    .gt-theme .annotation { background-color: var(--gt-color); backdrop-filter: blur(4px); }
+    .sot-theme .box { border-color: var(--good-color); color: var(--good-color); animation: pulse-box 2s infinite alternate; }
+    .sot-theme .annotation { background-color: var(--good-color); backdrop-filter: blur(4px); }
+    .bad-theme .box { border-color: var(--bad-color); color: var(--bad-color); animation: pulse-box 2s infinite alternate; }
+    .bad-theme .annotation { background-color: var(--bad-color); backdrop-filter: blur(4px); }
+
+  </style>
+</head>
+
+<body>
+  <div class="hero">
+    <h1>Structure of Thought</h1>
+    <p>Evaluating how structured prompting and internal logical mapping help generative AI models construct highly coherent, overview-level diagrams.</p>
+
+    <div class="provenance">
+      <strong>Image provenance / generation process:</strong>
+      Images were generated by sending two text prompts—one <strong>with SoT</strong> and one <strong>without SoT</strong>—to <strong>nano banana</strong>. The <strong>raw images</strong> are the original figures extracted from the paper and are shown as a reference.
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="carousel-shell">
+
+      <div class="carousel-controls">
+        <button class="arrow-btn" id="prevBtn" aria-label="Previous sample">← Prev</button>
+        <div class="dots" aria-label="Sample selector">
+          <button class="dot active" data-index="0" aria-label="Go to Sample 1"></button>
+          <button class="dot" data-index="1" aria-label="Go to Sample 2"></button>
+          <button class="dot" data-index="2" aria-label="Go to Sample 3"></button>
+        </div>
+        <button class="arrow-btn" id="nextBtn" aria-label="Next sample">Next →</button>
+      </div>
+
+      <div class="carousel" id="carousel">
+
+        <!-- ===================== Slide 1 ===================== -->
+        <section class="slide" id="sample-i">
+          <h2 class="slide-header">Sample I: Service Ecosystem</h2>
+
+          <div class="card gt-card">
+            <h3 class="gt-title">✦ Ground Truth Framework</h3>
+            <p>The manual standard features explicit vertical tiering and a distinct central platform.</p>
+            <div class="img-wrapper">
+              <img src="Sample_I_raw.png" alt="Ecosystem GT">
+              <div class="box box-gt" style="top: 0.8%; left: 3.2%; width: 6.6%; height: 98.2%;"></div>
+              <div class="annotation bg-gt" style="top: -5%; left: 0%;">Explicit Vertical Level Hierarchy</div>
+
+              <div class="box box-gt" style="top: 17.5%; left: 12.8%; width: 72.5%; height: 49.6%;"></div>
+              <div class="annotation bg-gt" style="top: 68%; left: 50%;">Clean Meso Level</div>
+            </div>
+          </div>
+
+          <div class="interactive-comparison-container">
+            <div id="sampleI-sot" class="card tab-content active sot-theme">
+              <h3 class="sot-title">✓ With Structure of Thought</h3>
+              <p>Captures structural logic perfectly, mimicking vertical flow and horizontal bands.</p>
+              <div class="img-wrapper">
+                <img src="Gemini_SoT_Sample_I.png" alt="Ecosystem SoT">
+                <div class="box" style="top: 1%; left: 1%; width: 6%; height: 97%;"></div>
+                <div class="annotation" style="top: -5%; left: 0%;">Matches GT Vertical Labels</div>
+
+                <div class="box" style="top: 29%; left: 8%; width: 91%; height: 28%;"></div>
+                <div class="annotation" style="top: 59%; left: 50%;">Clean Horizontal Banding</div>
+              </div>
+            </div>
+
+            <div id="sampleI-bad" class="card tab-content bad-theme">
+              <h3 class="nosot-title">✗ Without Structure of Thought</h3>
+              <p>Fails overarching hierarchy, relying on deep nesting that ruins readability.</p>
+              <div class="img-wrapper">
+                <img src="Gemini_without_SoT_Sample_I.png" alt="Ecosystem No SoT">
+                <div class="box" style="top: 1.5%; left: 20%; width: 62%; height: 24%;"></div>
+                <div class="annotation" style="top: -5%; left: 22%;">Horizontal Labels break vertical flow</div>
+
+                <div class="box" style="top: 26.5%; left: 20%; width: 62%; height: 26%;"></div>
+                <div class="annotation" style="top: 54%; left: 45%;">Heavy nesting causes clutter</div>
+              </div>
+            </div>
+
+            <!-- Buttons BELOW image/card -->
+            <div class="tabs">
+              <button class="tab-btn active-sot" data-sample="sampleI" data-type="sot" onclick="switchTab('sampleI','sot')">✓ With Structure of Thought</button>
+              <button class="tab-btn" data-sample="sampleI" data-type="bad" onclick="switchTab('sampleI','bad')">✗ Without Structure of Thought</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== Slide 2 ===================== -->
+        <section class="slide" id="sample-ii">
+          <h2 class="slide-header">Sample II: OpenROAD Pipeline</h2>
+
+          <div class="card gt-card gt-theme">
+            <h3 class="gt-title">✦ Ground Truth Framework</h3>
+            <p>Notice the clear, sequential <strong>step-by-step pipeline</strong> organized into distinct columns (Inputs → Placement → Routing → Output).</p>
+            <div class="img-wrapper">
+              <img src="Sample_IV_raw.png" alt="Ground Truth Diagram">
+              <div class="box" style="top: 17%; left: 38%; width: 26%; height: 72%;"></div>
+              <div class="annotation" style="top: 92%; left: 35%;">Explicit sequence: Detail Placement to Detail Routing</div>
+            </div>
+          </div>
+
+          <div class="interactive-comparison-container">
+            <div id="sampleII-sot" class="card tab-content active sot-theme">
+              <h3 class="sot-title">✓ With Structure of Thought</h3>
+              <p>By mapping the layout first, the model perfectly captured the three-phase column structure and the exact linear execution sequence of OpenROAD.</p>
+              <div class="img-wrapper">
+                <img src="Gemini_SoT_Sample_IV.png" alt="SoT Output">
+                <div class="box" style="top: 8%; left: 4%; width: 92%; height: 14%;"></div>
+                <div class="annotation" style="top: 24%; left: 30%;">Explicit 3-Column Phase Headers</div>
+
+                <div class="box" style="top: 30%; left: 41%; width: 18%; height: 57%;"></div>
+                <div class="annotation" style="top: 89%; left: 38%;">Preserved linear execution steps</div>
+              </div>
+            </div>
+
+            <div id="sampleII-bad" class="card tab-content bad-theme">
+              <h3 class="nosot-title">✗ Without Structure of Thought</h3>
+              <p>Without an overarching structural thought process, the model lumps complex steps into generic boxes and creates an awkward visual flow.</p>
+              <div class="img-wrapper">
+                <img src="Gemini_without_SoT_Sample_IV.png" alt="Non-SoT Output">
+                <div class="box" style="top: 1%; left: 63.5%; width: 36%; height: 47.5%;"></div>
+                <div class="annotation" style="top: -4%; left: 60%;">Collapsed generic groups (Lost steps)</div>
+
+                <div class="box" style="top: 54%; left: 23%; width: 77%; height: 45%;"></div>
+                <div class="annotation" style="top: 66%; left: 45%;">Awkward zigzag bottom flow</div>
+              </div>
+            </div>
+
+            <!-- Buttons BELOW image/card -->
+            <div class="tabs">
+              <button class="tab-btn active-sot" data-sample="sampleII" data-type="sot" onclick="switchTab('sampleII','sot')">✓ With Structure of Thought</button>
+              <button class="tab-btn" data-sample="sampleII" data-type="bad" onclick="switchTab('sampleII','bad')">✗ Without Structure of Thought</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== Slide 3 ===================== -->
+        <section class="slide" id="sample-iii">
+          <h2 class="slide-header">Sample III: Monarch Architecture</h2>
+
+          <div class="card gt-card">
+            <h3 class="gt-title">✦ Ground Truth Framework</h3>
+            <p>Strict use of macro-containers ("GLOBAL" and "Zone-1") to encapsulate complex sub-systems safely.</p>
+            <div class="img-wrapper">
+              <img src="Sample_III_raw.png" alt="Monarch GT">
+
+              <div class="box box-gt" style="top: 2%; left: 2%; width: 76%; height: 26%;"></div>
+              <div class="annotation bg-gt" style="top: -6%; left: 4%;">Explicit Global Container</div>
+
+              <div class="box box-gt" style="top: 29%; left: 2%; width: 88%; height: 68%;"></div>
+              <div class="annotation bg-gt" style="top: 98%; left: 4%;">Explicit Zonal Container</div>
+            </div>
+          </div>
+
+          <div class="interactive-comparison-container">
+            <div id="sampleIII-sot" class="card tab-content active sot-theme">
+              <h3 class="sot-title">✓ With Structure of Thought</h3>
+              <p>Understands hierarchical limits, using dashed boundaries to partition the system flawlessly.</p>
+              <div class="img-wrapper">
+                <img src="Gemini_SoT_Sample_III.png" alt="Monarch SoT">
+
+                <div class="box" style="top: 10%; left: 6%; width: 55%; height: 28%;"></div>
+                <div class="annotation" style="top: 4%; left: 8%;">Clear Global Encapsulation</div>
+
+                <div class="box" style="top: 47%; left: 6%; width: 83%; height: 50%;"></div>
+                <div class="annotation" style="top: 99%; left: 8%;">Clean Zonal Boundary</div>
+              </div>
+            </div>
+
+            <div id="sampleIII-bad" class="card tab-content bad-theme">
+              <h3 class="nosot-title">✗ Without Structure of Thought</h3>
+              <p>Fails container logic, dropping global nodes directly onto the canvas resulting in tangled pathways.</p>
+              <div class="img-wrapper">
+                <img src="Gemini_without_SoT_Sample_III.png" alt="Monarch No SoT">
+
+                <div class="box" style="top: 2%; left: 1%; width: 28%; height: 9%;"></div>
+                <div class="annotation" style="top: -5%; left: 1%;">Floating Text (No Container)</div>
+
+                <div class="box" style="top: 8%; left: 49%; width: 49%; height: 55%;"></div>
+                <div class="annotation" style="top: 65%; left: 50%;">Uncontained / Tangled Routing</div>
+              </div>
+            </div>
+
+            <!-- Buttons BELOW image/card -->
+            <div class="tabs">
+              <button class="tab-btn active-sot" data-sample="sampleIII" data-type="sot" onclick="switchTab('sampleIII','sot')">✓ With Structure of Thought</button>
+              <button class="tab-btn" data-sample="sampleIII" data-type="bad" onclick="switchTab('sampleIII','bad')">✗ Without Structure of Thought</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* -----------------------
+       Tab switcher (per sample)
+       ----------------------- */
+    function switchTab(sample, type) {
+      // buttons
+      const btns = document.querySelectorAll('.tab-btn[data-sample="' + sample + '"]');
+      btns.forEach(b => b.classList.remove('active-sot', 'active-bad'));
+
+      // content blocks
+      const sot = document.getElementById(sample + '-sot');
+      const bad = document.getElementById(sample + '-bad');
+
+      [sot, bad].forEach(el => {
+        el.classList.remove('active');
+        setTimeout(() => {
+          if (!el.classList.contains('active')) el.style.display = 'none';
+        }, 260);
+      });
+
+      // activate
+      if (type === 'sot') {
+        const btn = document.querySelector('.tab-btn[data-sample="' + sample + '"][data-type="sot"]');
+        if (btn) btn.classList.add('active-sot');
+        sot.style.display = 'block';
+        setTimeout(() => sot.classList.add('active'), 20);
+      } else {
+        const btn = document.querySelector('.tab-btn[data-sample="' + sample + '"][data-type="bad"]');
+        if (btn) btn.classList.add('active-bad');
+        bad.style.display = 'block';
+        setTimeout(() => bad.classList.add('active'), 20);
+      }
+    }
+
+    /* -----------------------
+       Carousel controls
+       ----------------------- */
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = Array.from(document.querySelectorAll('.dot'));
+
+    function slideWidth() {
+      // the first slide width (includes padding inside, but good enough)
+      const first = carousel.querySelector('.slide');
+      return first ? first.getBoundingClientRect().width + 20 : carousel.getBoundingClientRect().width;
+    }
+
+    function currentIndex() {
+      const w = carousel.getBoundingClientRect().width;
+      const idx = Math.round(carousel.scrollLeft / w);
+      return Math.max(0, Math.min(2, idx));
+    }
+
+    function updateCarouselUI() {
+      const idx = currentIndex();
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx === 2;
+      dots.forEach(d => d.classList.toggle('active', Number(d.dataset.index) === idx));
+    }
+
+    function goTo(idx) {
+      const w = carousel.getBoundingClientRect().width;
+      carousel.scrollTo({ left: idx * w, behavior: 'smooth' });
+    }
+
+    prevBtn.addEventListener('click', () => goTo(currentIndex() - 1));
+    nextBtn.addEventListener('click', () => goTo(currentIndex() + 1));
+    dots.forEach(d => d.addEventListener('click', () => goTo(Number(d.dataset.index))));
+
+    carousel.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateCarouselUI);
+    });
+    window.addEventListener('resize', updateCarouselUI);
+
+    updateCarouselUI();
+  </script>
+</body>
+</html>

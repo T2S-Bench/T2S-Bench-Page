@@ -1,0 +1,389 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+  position: relative;
+  background-color: #ffffff;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("../images/background-texture.png");
+  background-repeat: repeat;
+  background-size: 900px auto;
+  background-position: center;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  background-image: url("../images/t2s.png");
+  background-repeat: repeat;
+  background-size: 800px auto;
+  background-position: center;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+  transform: rotate(-12deg);
+  transform-origin: center;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.mathvista {
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title,
+.publication-subtitle {
+    font-family: 'Poppins', 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Poppins', 'Google Sans', sans-serif;
+}
+
+/* Apply rounded font to all section titles */
+.title {
+    font-family: 'Poppins', 'Google Sans', sans-serif;
+}
+
+/* Captions and body text in content blocks */
+.content p {
+    font-family: 'Poppins', 'Google Sans', sans-serif;
+}
+
+/* Softer emphasis color for bold text in paragraphs */
+.content p b,
+.content p strong {
+    color: #7D8086;
+}
+
+.example-mr-title {
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+.intro-highlight-pink p b,
+.intro-highlight-pink p strong {
+  color: #706079;
+}
+
+.sot-intro-text p {
+  font-size: 1.55rem;
+  line-height: 1.65;
+}
+
+.sot-key-message {
+  color: #d208fb;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+/* ── Generic snap carousel (replaces bulma carousel) ── */
+.snap-carousel-shell {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.snap-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 0.5rem;
+}
+.snap-track::-webkit-scrollbar { display: none; }
+
+.snap-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+/* Images and videos inside snap carousel boxes */
+.snap-carousel-shell .box .content img,
+.snap-carousel-shell .box .content video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Side arrow buttons — match original bulma-carousel style */
+.snap-prev-btn,
+.snap-next-btn {
+  position: absolute;
+  top: 50%;
+  margin-top: -21px;
+  z-index: 10;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid #fff;
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  border-radius: 25091983px;
+  background: #fff;
+  color: #323232;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(50, 50, 50, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  user-select: none;
+}
+.snap-prev-btn { left: 30px; }
+.snap-next-btn { right: 30px; }
+.snap-prev-btn:hover,
+.snap-next-btn:hover {
+  transform: scale(1.2);
+}
+.snap-prev-btn:disabled,
+.snap-next-btn:disabled {
+  opacity: 0;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Right-angle isosceles triangles via CSS border trick */
+.snap-prev-btn::before,
+.snap-next-btn::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+}
+.snap-prev-btn::before {
+  border-right: 9px solid #323232;
+  margin-right: 2px;
+}
+.snap-next-btn::before {
+  border-left: 9px solid #323232;
+  margin-left: 2px;
+}
+
+/* Dots bar above the track, close to the image */
+.snap-dots-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+.snap-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.snap-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.18);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.snap-dot.active {
+  background: #4f46e5;
+  transform: scale(1.3);
+}
+
+/* Example caption overlay: topic label floats above the box */
+.example-caption-carousel .box {
+  position: relative;
+  overflow: visible;
+  margin-top: 0.75rem;
+}
+.example-caption-carousel .box .content.has-text-centered {
+  position: relative;
+  padding-top: 3.2rem;
+}
+.example-caption-carousel .box .content.has-text-centered p {
+  position: absolute;
+  top: 0;
+  left: 5%;
+  display: inline-block;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 750;
+  color: #4a4a4aab;
+  line-height: 1.2;
+  font-family: 'Poppins', 'Google Sans', sans-serif;
+}
+.example-caption-carousel .box .content.has-text-centered p::after {
+  content: none;
+}
+
+/* .results-carousel .item {
+  margin: 20px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 0;
+} */
+
+.stats-image {
+  max-height: 250px;
+}
+
+#org-banners {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.org-banner {
+  /* margin: 5px; */
+  width: clamp(80px, 22vw, 300px);
+  max-width: 100%;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+  object-fit: contain;
+}
+
+.org-banner-upscale {
+  width: clamp(95px, 26vw, 345px);
+}
+
+#org-banners a:first-child .org-banner {
+  transform: translateY(-10px);
+}
+
+@media screen and (max-width: 768px) {
+  #org-banners {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+/* White background for leaderboard sections */
+#leaderboard + .content,
+h2#leaderboard_structure + .content {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95vw;
+    max-width: 1800px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}

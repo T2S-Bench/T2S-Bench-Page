@@ -1,0 +1,110 @@
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 2px 5px;
+    border: 1px solid black;
+}
+
+td {
+    padding: 2px 5px;
+    border: 1px solid black;
+}
+
+thead {
+    background: #ddd;
+}
+
+table:is(#results, #results_structure).js-sort-0 tbody tr td:nth-child(1),
+table:is(#results, #results_structure).js-sort-1 tbody tr td:nth-child(2),
+table:is(#results, #results_structure).js-sort-2 tbody tr td:nth-child(3),
+table:is(#results, #results_structure).js-sort-3 tbody tr td:nth-child(4),
+table:is(#results, #results_structure).js-sort-4 tbody tr td:nth-child(5),
+table:is(#results, #results_structure).js-sort-5 tbody tr td:nth-child(6),
+table:is(#results, #results_structure).js-sort-6 tbody tr td:nth-child(7),
+table:is(#results, #results_structure).js-sort-7 tbody tr td:nth-child(8),
+table:is(#results, #results_structure).js-sort-8 tbody tr td:nth-child(9),
+table:is(#results, #results_structure).js-sort-9 tbody tr td:nth-child(10),
+table:is(#results, #results_structure).js-sort-10 tbody tr td:nth-child(11),
+table:is(#results, #results_structure).js-sort-11 tbody tr td:nth-child(12),
+table:is(#results, #results_structure).js-sort-12 tbody tr td:nth-child(13),
+table:is(#results, #results_structure).js-sort-13 tbody tr td:nth-child(14),
+table:is(#results, #results_structure).js-sort-14 tbody tr td:nth-child(15) {
+    background: #dee;
+}
+
+/* Table for three sub-tasks */
+#results,
+#results_structure {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    border-collapse: collapse;
+    width: max-content;
+    min-width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+/*table tile*/
+#results th,
+#results_structure th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    background-color: var(--UCLA-darkblue);
+    color: white;
+}
+
+#results td,
+#results_structure td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Widen model and date columns */
+#results th:nth-child(2),
+#results td:nth-child(2),
+#results_structure th:nth-child(2),
+#results_structure td:nth-child(2) {
+    min-width: 260px;
+}
+
+#results th:nth-child(5),
+#results td:nth-child(5),
+#results_structure th:nth-child(5),
+#results_structure td:nth-child(5) {
+    min-width: 80px;
+}
+
+#results tr:nth-child(even),
+#results_structure tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+#results tr:hover,
+#results_structure tr:hover {
+    background-color: #ddd;
+}
+
+.js-sort-number:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.js-sort:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.best-score-text {
+    color: #C6011F
+    /* color: #3457D5 */
+}

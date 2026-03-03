@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="T2S-Bench">
+  <meta name="keywords" content="T2S-Bench, T2S Bench">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> T2S-Bench </title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <!-- <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+/Users/panlu/Library/Mobile Documents/com~apple~CloudDocs/ImageMath/visual-mathqa-server/data_final/images
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link rel="icon" href="./static/images/mathvista.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|Poppins:400,600,800" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+
+  <script src="./static/js/leaderboard_testmini.js"></script>
+  <script src="./static/js/leaderboard_structure.js"></script>
+  <script src="./data/results/output_folders.js" defer></script>
+  <script src="./data/results/model_scores.js" defer></script>
+  <script src="./data/results/model_scores_structure.js" defer></script>
+
+  <script src="./visualizer/data/data_public.js" defer></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <img src="static/images/t2s.png" style="width:2em;vertical-align: middle" alt="Logo"/>
+            <span class="mathvista" style="vertical-align: middle; background: linear-gradient(135deg, #4f46e5, #ec4899); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">T2S-BENCH</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle" style="white-space: nowrap;">
+            <b>Benchmarking Comprehensive Text-to-Structure Reasoning</b>
+            <!-- <br> -->
+            <!-- with GPT-4V, Bard, and Other Large Multimodal Models -->
+          </h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://wangqinsi1.github.io/">Qinsi Wang*</a><sup style="color:#6fbf73;">1</sup>,</span>
+            <span class="author-block">
+              <a href="https://hanchengye.com/">Hancheng Ye*</a><sup style="color:#6fbf73;">1</sup>,</span>
+            <span class="author-block">
+              <a href="https://a2jinhee.github.io/">Jinhee Kim*</a><sup style="color:#6fbf73;">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ah-miu.github.io/">Jinghan Ke</a><sup style="color:#ffac33">2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cei.pratt.duke.edu/people/yifei-wang">Yifei Wang</a><sup style="color:#6fbf73">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=e-IPVnAAAAAJ&hl=zh-TW">Martin Kuo</a><sup style="color:#6fbf73">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zishan-shao.github.io/">Zishan Shao</a><sup style="color:#6fbf73">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cei.pratt.duke.edu/people/dongting-li">Dongting Li</a><sup style="color:#6fbf73;">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://yueqianlin.com/">Yueqian Lin</a><sup style="color:#6fbf73">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=eGfZvOkAAAAJ&hl=en">Ting Jiang</a><sup style="color:#6fbf73">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://dubcyfor3.github.io/">Chiyue Wei</a><sup style="color:#6fbf73">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://qi-qian.com/">Qi Qian</a><sup style="color:#ed4b82">3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://wenwei202.github.io/">Wei Wen</a><sup style="color:#ed4b82">3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ece.duke.edu/people/hai-helen-li/">Helen Li</a><sup style="color:#6fbf73;">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ece.duke.edu/people/yiran-chen/">Yiran Chen</a><sup style="color:#6fbf73">1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup style="color:#6fbf73;">1</sup>Duke University,</span>
+            <span class="author-block"><sup style="color:#ffac33">2</sup>UT Austin,</span>
+            <span class="author-block"><sup style="color:#ed4b82">3</sup>Meta</span><br>
+          </div>
+        
+          <!-- <section> -->
+            <!-- <div class="section" id="org-banners" style="display:fle">
+              <a href="https://www.ucla.edu/" target="_blank" rel="external">
+                  <img class="center-block org-banner" src="static/images/ucla.png" style="height:3em">
+              </a>
+              <a href="https://www.washington.edu/" target="blank" class="ext-link">
+                  <img class="center-block org-banner" src="static/images/uw.png" style="height:3em">
+              </a>
+              <a href="https://www.microsoft.com/en-us/research/" target="_blank" rel="external">
+                  <img class="center-block org-banner" src="static/images/microsoft.png" style="height:3em">
+              </a>
+            </div> -->
+          <!-- </section> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <!-- @PAN TODO: change links -->
+                <a href=" "
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=" "
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/T2SBench"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">🤗</p>
+                      <!-- 🔗 -->
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <!-- Examples Link. -->
+              <span class="link-block">
+                <a href="#examples"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🔮</p>
+                  </span>
+                  <span>Examples</span>
+                </a>
+              </span>
+              <!-- Leaderboard Link. -->
+              <span class="link-block">
+                <a href="#leaderboard"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🏆</p>
+                  </span>
+                  <span>Leaderboard</span>
+                </a>
+              </span>
+              <!-- Twitter Link. -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <img src="static/images/tease_scores_gpt4v.png" alt="geometric reasoning"/>
+      <p> Accuracy scores of one leading LLM (i.e., PoT GPT-4), four primary LMMs, random chance, and human performance our proposed 
+      <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+      <span class="mathvista">MathVista</span>
+      across mathematical reasoning and visual context types. PoT refers to program-of-thought prompting, and PoT GPT-4 is a textual LLM augmented with the caption and OCR text. GPT-4V is manually evaluated via the playground chatbot.
+      </p>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container" style="margin-top: -150px; margin-bottom: -100px;">
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <div class="snap-carousel-shell">
+          <button class="snap-prev-btn" aria-label="Previous slide"></button>
+          <button class="snap-next-btn" aria-label="Next slide"></button>
+          <div class="snap-dots-bar">
+            <div class="snap-dots"></div>
+          </div>
+          <div class="snap-track">
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <video src="data/demo.mp4" autoplay muted loop playsinline></video>
+                  <p>T2S-Bench is the first benchmark specifically designed to evaluate and improve models’ text-to-structure capabilities.</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/T2S_image2.jpg" alt="geometric reasoning"/>
+                  <p>Performance of models from different families on T2S-Bench.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified intro-highlight-pink">
+          <p>
+          <!-- <b>Large Language Models (LLMs)</b> and <b>Large Multimodal Models (LMMs)</b> exhibit impressive problem-solving skills in many tasks and domains, but their ability in mathematical reasoning in visual contexts has not been systematically studied. -->
+          Large Language Models (LLMs) have demonstrated remarkable capabilities across a wide range of language understanding and reasoning tasks. However, despite their success, their ability to explicitly structure information from complex text—capturing key entities, relations, and higher-order semantic organization—remains poorly understood and insufficiently evaluated. Existing benchmarks primarily assess surface-level generation or task-specific reasoning outcomes, leaving the fundamental problem of text-to-structure understanding largely unexplored.
+  
+        </p>
+          <p>
+            <!-- To bridge this gap, we present <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>
+            <span class="mathvista">MathVista</span>, a benchmark designed to combine challenges from diverse mathematical and visual tasks. It consists of <b>6,141 examples</b>, derived from <b>28 existing multimodal datasets</b> involving mathematics and <b>3 newly created datasets</b> (i.e., <b>IQTest, FunctionQA, and PaperQA</b>). Completing these tasks requires fine-grained, deep visual understanding and compositional reasoning, which all state-of-the-art foundation models find challenging.  -->
+            To bridge this gap, we present <img src="static/images/t2s.png" style="width:2.9em;vertical-align: middle" alt="Logo"/>
+            <span class="mathvista">T2S-Bench</span>, the first benchmark specifically designed to evaluate and improve models’ text-to-structure capabilities. T2S-Bench comprises <b>1.8K high-quality samples</b> spanning <b>6 scientific domains</b>, <b>17 subfields</b>, and <b>32 distinct structural types</b>, covering a wide spectrum of real-world semantic structures. Solving tasks in T2S-Bench requires models to move beyond fluent text generation and instead perform explicit semantic structuring, which proves challenging for all existing models.
+          </p>
+          <p>
+            <!-- With <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> -->
+            <!-- <span class="mathvista">MathVista</span>, we have conducted <b>a comprehensive, quantitative evaluation of 12 prominent foundation models</b>. The best-performing <b>GPT-4V</b> model achieves an overall accuracy of <b>49.9%</b>, substantially outperforming Bard, the second-best performer, by <b>15.1%</b>. Our in-depth analysis reveals that the superiority of <b>GPT-4V</b> is mainly attributed to its enhanced visual perception and mathematical reasoning. However, <b>GPT-4V</b> still falls short of human performance by <b>10.4%</b>, as it often struggles to understand complex figures and perform rigorous reasoning. This significant gap underscores the critical role that <img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/> -->
+            <!-- <span class="mathvista">MathVista</span> will play in the development of general-purpose AI agents capable of tackling mathematically intensive and visually rich real-world tasks. We further explore the new ability of <b>self-verification</b>, the use of <b>self-consistency</b>, and the  <b>goal-directed multi-turn human-AI dialogues</b>, highlighting the promising potential of GPT-4V for future research.  -->
+            Using <img src="static/images/t2s.png" style="width:2.9em;vertical-align: middle" alt="Logo"/>
+            <span class="mathvista">T2S-Bench</span>, we conduct a comprehensive evaluation of <b>45 mainstream models</b> across 10 model families. Our results reveal substantial headroom for improvement: on the multi-hop reasoning subset, the average exact-match accuracy is only 52.1%, and even the strongest model achieves merely 58.1% node accuracy on end-to-end structure extraction. These findings indicate that <b>accurate text structuring remains a core bottleneck for current LLMs, even those excelling at downstream reasoning tasks</b>. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+
+
+<!-- DATASET SECTION -->
+<section class="hero is-small" style="background-color: #EBEBE9;">
+  <div class="hero-body has-text-centered">
+    <!-- <h1 class="title is-1 mathvista"><img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>MathVista Dataset</h1> -->
+  <h1 class="title is-1 mathvista">
+    <img src="static/images/t2s.png" style="width:2em;vertical-align: middle" alt="Logo"/>
+    <span class="mathvista" style="vertical-align: middle; font-family: 'Poppins', 'Google Sans', sans-serif; background: linear-gradient(135deg, #4f46e5, #ec4899); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LEADERBOARD</span>
+  </h1>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section class="section">
+  <div class="container">
+    
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3" id="leaderboard">Leaderboard on T2S-Bench-MR</h2>
+        <div class="content">
+          <p class="mt-3">EM (Exact Match) and F1 scores on the <b>Multi-hop Reasoning</b> benchmark.</p>
+
+          <div id="testmini_leaderboard" style="overflow-x: auto; width: 100%;"></div>
+
+          <b>Metrics:</b> <b>EM</b> (Exact Match), <b>F1</b>.
+          <br>
+          <b>Task categories:</b> <b>Overall</b>, <b>Computer Science</b>, <b>Economic Science</b>, <b>Environment Science</b>, <b>Life Science</b>, <b>Physical Science</b>, <b>Social Science</b>.
+
+          <!-- <table class="js-sort-table" id="results">
+              <tr>
+                  <td class="js-sort-number"><strong>#</strong></td>
+                  <td class="js-sort-number"><strong>Model</strong></td>
+                  <td class="js-sort-number"><strong>Method</strong></td>
+                  <td class="js-sort-number"><strong>Source</strong></td>
+                  <td class="js-sort-number"><strong>Date</strong></td>
+                  <td class="js-sort-number"><strong><u>ALL</u></strong></td>
+                  <td class="js-sort-number"><strong>FQA</strong></td>
+                  <td class="js-sort-number"><strong>GPS</strong></td>
+                  <td class="js-sort-number"><strong>MWP</strong></td>
+                  <td class="js-sort-number"><strong>TQA</strong></td>
+                  <td class="js-sort-number"><strong>VQA</strong></td>
+                  <td class="js-sort-number"><strong>ALG</strong></td>
+                  <td class="js-sort-number"><strong>ARI</strong></td>
+                  <td class="js-sort-number"><strong>GEO</strong></td>
+                  <td class="js-sort-number"><strong>LOG</strong></td>
+                  <td class="js-sort-number"><strong>NUM</strong></td>
+                  <td class="js-sort-number"><strong>SCI</strong></td>
+                  <td class="js-sort-number"><strong>STA</strong></td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td><b>Human Performance*</b></td>
+                <td>-</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>60.3</b></td>
+                <td>59.7</td>
+                <td>48.4</td>
+                <td>73.0</td>
+                <td>63.2</td>
+                <td>55.9</td>
+                <td>50.9</td>
+                <td>59.2</td>
+                <td>51.4</td>
+                <td>40.7</td>
+                <td>53.8</td>
+                <td>64.9</td>
+                <td>63.9</td>                
+              </tr>
+              <tr>
+                <td>1</td>
+                <td><b class="best-score-text" style="color: #C6011F">Gemini Ultra🥇</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-12-06</td>
+                <td><b class="best-score-text" style="color: #C6011F">53.0</b></td>
+                <td>49.1</td>
+                <td>56.3</td>
+                <td>53.8</td>
+                <td>69.0</td>
+                <td>40.2</td>
+                <td>58.4</td>
+                <td>45.9</td>
+                <td>55.7</td>
+                <td>21.6</td>
+                <td>38.9</td>
+                <td>62.3</td>
+                <td>59.5</td>                      
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><b class="best-score-text" style="color: #C6011F">GPT-4V (Playground)🥈</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-15</td>
+                <td><b class="best-score-text" style="color: #C6011F">49.9</b></td>
+                <td>43.1</td>
+                <td>50.5</td>
+                <td>57.5</td>
+                <td>65.2</td>
+                <td>38.0</td>
+                <td>53.0</td>
+                <td>49.0</td>
+                <td>51.0</td>
+                <td>21.6</td>
+                <td>20.1</td>
+                <td>63.1</td>
+                <td>55.8</td>                      
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><b class="best-score-text" style="color: #C6011F">Gemini Pro 🥉</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-12-06</td>
+                <td><b class="best-score-text" style="color: #C6011F">45.2</b></td>
+                <td>47.6</td>
+                <td>40.4</td>
+                <td>39.3</td>
+                <td>61.4</td>
+                <td>39.1</td>
+                <td>45.2</td>
+                <td>38.8</td>
+                <td>41.0</td>
+                <td>10.8</td>
+                <td>32.6</td>
+                <td>54.9</td>
+                <td>56.8</td>                      
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><b>Qwen-VL-Plus</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://github.com/QwenLM/Qwen-VL" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-12-21</td>
+                <td><b>43.3</b></td>
+                <td>54.7</td>
+                <td>38.5</td>
+                <td>31.2</td>
+                <td>55.1</td>
+                <td>34.1</td>
+                <td>39.2</td>
+                <td>32.0</td>
+                <td>39.3</td>
+                <td>18.9</td>
+                <td>26.4</td>
+                <td>59.0</td>
+                <td>56.2</td>                             
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><b>SPHINX (V2)</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://github.com/Alpha-VLLM/LLaMA2-Accessory/tree/main/SPHINX" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-11-17</td>
+                <td><b>36.7</b></td>
+                <td>54.7</td>
+                <td>16.4</td>
+                <td>23.1</td>
+                <td>41.8</td>
+                <td>43.0</td>
+                <td>20.6</td>
+                <td>33.4</td>
+                <td>17.6</td>
+                <td>24.3</td>
+                <td>21.5</td>
+                <td>43.4</td>
+                <td>51.5</td>                             
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><b>Multimodal Bard</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>34.8</b></td>
+                <td>26.0</td>
+                <td>47.1</td>
+                <td>29.6</td>
+                <td>48.7</td>
+                <td>26.8</td>
+                <td>46.5</td>
+                <td>28.6</td>
+                <td>47.8</td>
+                <td>13.5</td>
+                <td>14.9</td>
+                <td>47.5</td>
+                <td>33.0</td>                
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><b>PoT GPT-4 (Caption+OCR) </b></td>
+                <td>Tool 🛠️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>33.9</b></td>
+                <td>30.1</td>
+                <td>39.4</td>
+                <td>30.6</td>
+                <td>39.9</td>
+                <td>31.3</td>
+                <td>37.4</td>
+                <td>31.7</td>
+                <td>41.0</td>
+                <td>18.9</td>
+                <td>20.1</td>
+                <td>44.3</td>
+                <td>37.9</td>                               
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><b>CoT GPT-4 (Caption+OCR) </b></td>
+                <td>Tool 🛠️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>33.2</b></td>
+                <td>27.9</td>
+                <td>31.7</td>
+                <td>31.2</td>
+                <td>51.9</td>
+                <td>28.5</td>
+                <td>33.5</td>
+                <td>30.9</td>
+                <td>32.2</td>
+                <td>13.5</td>
+                <td>12.5</td>
+                <td>58.2</td>
+                <td>37.9</td>                               
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><b>CoT ChatGPT (Caption+OCR)</b></td>
+                <td>Tool 🛠️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>33.2</b></td>
+                <td>27.5</td>
+                <td>29.3</td>
+                <td>36.0</td>
+                <td>49.4</td>
+                <td>29.1</td>
+                <td>31.0</td>
+                <td>32.9</td>
+                <td>31.0</td>
+                <td>16.2</td>
+                <td>17.4</td>
+                <td>50.8</td>
+                <td>37.2</td>                               
+              </tr>
+              <tr>
+                <td>10</td>
+                <td><b>CoT Claude-2 (Caption+OCR)</b></td>
+                <td>Tool 🛠️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>33.2</b></td>
+                <td>26.0</td>
+                <td>31.7</td>
+                <td>35.5</td>
+                <td>48.1</td>
+                <td>30.2</td>
+                <td>32.4</td>
+                <td>32.3</td>
+                <td>33.0</td>
+                <td>16.2</td>
+                <td>17.4</td>
+                <td>54.9</td>
+                <td>36.2</td>                             
+              </tr>
+              <tr>
+                <td>11</td>
+                <td><b>Gemini Nano 2</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-12-06</td>
+                <td><b>30.6</b></td>
+                <td>28.6</td>
+                <td>23.6</td>
+                <td>30.7</td>
+                <td>41.8</td>
+                <td>31.8</td>
+                <td>27.1</td>
+                <td>29.8</td>
+                <td>26.8</td>
+                <td>10.8</td>
+                <td>20.8</td>
+                <td>40.2</td>
+                <td>33.6</td>                      
+              </tr>
+              <tr>
+                <td>12</td>
+                <td><b>SPHINX (V1)</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://github.com/Alpha-VLLM/LLaMA2-Accessory/blob/main/SPHINX/SPHINX_paper.pdf" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-11-09</td>
+                <td><b>27.5</b></td>
+                <td>23.4</td>
+                <td>23.1</td>
+                <td>21.5</td>
+                <td>39.9</td>
+                <td>34.1</td>
+                <td>25.6</td>
+                <td>28.1</td>
+                <td>23.4</td>
+                <td>16.2</td>
+                <td>17.4</td>
+                <td>40.2</td>
+                <td>23.6</td>                             
+              </tr>
+              <tr>
+                <td>13</td>
+                <td><b>Gemini Nano 1</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-12-06</td>
+                <td><b>27.3</b></td>
+                <td>30.9</td>
+                <td>21.6</td>
+                <td>23.7</td>
+                <td>29.1</td>
+                <td>30.7</td>
+                <td>23.8</td>
+                <td>25.5</td>
+                <td>21.3</td>
+                <td>13.5</td>
+                <td>20.8</td>
+                <td>27.9</td>
+                <td>30.9</td>                      
+              </tr>
+              <tr>
+                <td>14</td>
+                <td><b>PoT ChatGPT (Caption+OCR)</b></td>
+                <td>Tool 🛠️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>26.8</b></td>
+                <td>24.5</td>
+                <td>26.4</td>
+                <td>23.7</td>
+                <td>33.5</td>
+                <td>27.9</td>
+                <td>27.8</td>
+                <td>26.1</td>
+                <td>28.0</td>
+                <td>18.9</td>
+                <td>13.2</td>
+                <td>33.6</td>
+                <td>29.9</td>                              
+              </tr>
+              <tr>
+                <td>15</td>
+                <td><b>LLaVA (LLaMA-2-13B)</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>26.1</b></td>
+                <td>26.8</td>
+                <td>29.3</td>
+                <td>16.1</td>
+                <td>32.3</td>
+                <td>26.3</td>
+                <td>27.3</td>
+                <td>20.1</td>
+                <td>28.8</td>
+                <td>24.3</td>
+                <td>18.3</td>
+                <td>37.3</td>
+                <td>25.1</td>                               
+              </tr>
+              <tr>
+                <td>16</td>
+                <td><b>InstructBLIP (Vicuna-7B)</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>25.3</b></td>
+                <td>23.1</td>
+                <td>20.7</td>
+                <td>18.3</td>
+                <td>32.3</td>
+                <td>35.2</td>
+                <td>21.8</td>
+                <td>27.1</td>
+                <td>20.7</td>
+                <td>18.9</td>
+                <td>20.4</td>
+                <td>33.0</td>
+                <td>23.1</td>                              
+              </tr>
+              <tr>
+                <td>17</td>
+                <td><b>LLaVAR</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>25.2</b></td>
+                <td>21.9</td>
+                <td>25.0</td>
+                <td>16.7</td>
+                <td>34.8</td>
+                <td>30.7</td>
+                <td>24.2</td>
+                <td>22.1</td>
+                <td>23.0</td>
+                <td>13.5</td>
+                <td>15.3</td>
+                <td>42.6</td>
+                <td>21.9</td>                               
+              </tr>
+              <tr>
+                <td>18</td>
+                <td><b>LLaMA-Adapter-V2 (7B)</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>23.9</b></td>
+                <td>21.2</td>
+                <td>25.5</td>
+                <td>11.3</td>
+                <td>32.3</td>
+                <td>31.8</td>
+                <td>26.3</td>
+                <td>20.4</td>
+                <td>24.3</td>
+                <td>24.3</td>
+                <td>13.9</td>
+                <td>29.5</td>
+                <td>18.3</td>                              
+              </tr>
+              <tr>
+                <td>19</td>
+                <td><b>miniGPT4 (LLaMA-2-7B)</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>23.1</b></td>
+                <td>18.6</td>
+                <td>26.0</td>
+                <td>13.4</td>
+                <td>30.4</td>
+                <td>30.2</td>
+                <td>28.1</td>
+                <td>21.0</td>
+                <td>24.7</td>
+                <td>16.2</td>
+                <td>16.7</td>
+                <td>25.4</td>
+                <td>17.9</td>                              
+              </tr>
+              <tr>
+                <td>20</td>
+                <td><b>mPLUG-Owl (LLaMA-7B)</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>22.2</b></td>
+                <td>22.7</td>
+                <td>23.6</td>
+                <td>10.2</td>
+                <td>27.2</td>
+                <td>27.9</td>
+                <td>23.6</td>
+                <td>19.2</td>
+                <td>23.9</td>
+                <td>13.5</td>
+                <td>12.7</td>
+                <td>26.3</td>
+                <td>21.4</td>                            
+              </tr>
+              <tr>
+                <td>21</td>
+                <td><b>IDEFICS (9B-Instruct)</b></td>
+                <td>LMM 🖼️</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>19.8</b></td>
+                <td>21.6</td>
+                <td>21.1</td>
+                <td>6.5</td>
+                <td>25.9</td>
+                <td>24.0</td>
+                <td>22.1</td>
+                <td>15.0</td>
+                <td>19.8</td>
+                <td>18.9</td>
+                <td>9.9</td>
+                <td>24.6</td>
+                <td>18.1</td>                               
+              </tr>
+              <tr>
+                <td>22</td>
+                <td><b>Random Chance</b></td>
+                <td>-</td>
+                <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>
+                <td>2023-10-03</td>
+                <td><b>17.9</b></td>
+                <td>18.2</td>
+                <td>21.6</td>
+                <td>3.8</td>
+                <td>19.6</td>
+                <td>26.3</td>
+                <td>21.7</td>
+                <td>14.7</td>
+                <td>20.1</td>
+                <td>13.5</td>
+                <td>8.3</td>
+                <td>17.2</td>
+                <td>16.3</td>                               
+              </tr>                                                              
+          </table> -->
+
+          <!-- <b>Human Performance*:</b> Average human performance from AMT annotators who have high school diplomas or above.
+          <br>
+          <b>Method types:</b> <b>LMM 🖼️:</b> Large Multimodal Model, <b>Tool 🛠️:</b> Tool-augmented Large Language Model.
+          <br>
+          <b>Task types:</b> <b>FQA:</b> figure QA,
+          <b>GPS:</b> geometry problem solving,
+          <b>MWP:</b> math word problem,
+          <b>TQA:</b> textbook QA,
+          <b>VQA:</b> visual QA.
+          <br>
+          <b>Math reasoning types:</b> 
+          <b>ALG:</b> algebraic,
+          <b>ARI:</b> arithmetic,
+          <b>GEO:</b> geometry,
+          <b>LOG:</b> logical ,
+          <b>NUM:</b> numeric,
+          <b>SCI:</b> scientific,
+          <b>STA:</b> statistical.
+          <br>
+          <br>
+          <div>
+          <p>🚨 To submit your results to the leaderboard, please send to <a href="mailto:lupantech@gmail.com">this email</a> with your result json files.
+            </p>
+          </div> -->
+
+        </div>
+
+        <h2 class="title is-3" id="leaderboard_structure">Leaderboard on T2S-Bench-E2E</h2>
+        <div class="content">
+          <p class="mt-3">Node and Link scores on the <b>End-to-End Evaluation</b> benchmark.</p>
+
+          <div id="structure_leaderboard" style="overflow-x: auto; width: 100%;"></div>
+
+          <b>Metrics:</b> <b>Node Similarity</b>, <b>Link F1</b>.
+          <br>
+          <b>Task categories:</b> <b>Overall</b>, <b>Computer Science</b>, <b>Economic Science</b>, <b>Environment Science</b>, <b>Life Science</b>, <b>Physical Science</b>, <b>Social Science</b>.
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DATASET SECTION -->
+<section class="hero is-small" style="background-color: #EBEBE9;">
+  <div class="hero-body has-text-centered">
+    <!-- <h1 class="title is-1 mathvista"><img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>MathVista Dataset</h1> -->
+  <h1 class="title is-1 mathvista">
+    <img src="static/images/t2s.png" style="width:2em;vertical-align: middle" alt="Logo"/>
+    <span class="mathvista" style="vertical-align: middle; font-family: 'Poppins', 'Google Sans', sans-serif; background: linear-gradient(135deg, #4f46e5, #ec4899); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DATASET CONSTRUCTION</span>
+  </h1>
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p> -->
+            
+<section class="section">
+  <div class="container">
+    <!-- Title and intro text in narrow column for readability -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified intro-highlight-pink">
+          <p><img src="static/images/t2s.png" style="width:2.9em;vertical-align: middle" alt="Logo"/>
+            <span class="mathvista">T2S-Bench</span> is a comprehensive benchmark for evaluating models' ability to extract structured representations from scientific text. It includes three curated components:
+<b>T2S-Train-1.2k</b> for training,
+<b>T2S-Bench-MR </b>(500 samples) for multi-hop reasoning, and
+<b>T2S-Bench-E2E </b>(87 samples) for end-to-end structuring.
+
+Covering 6 scientific domains, 17 subfields, and 32 structure types, <span class="mathvista">T2S-Bench</span> provides high-quality, structure-grounded samples drawn from peer-reviewed academic papers.
+Every sample underwent <b>6K+ model search</b>, <b>6 rounds of validation</b>, and <b>3 rounds of human review</b>, ensuring correctness in structure, text, and reasoning logic.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel in full-width column, same as Statistics section -->
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <div class="snap-carousel-shell">
+          <button class="snap-prev-btn" aria-label="Previous slide"></button>
+          <button class="snap-next-btn" aria-label="Next slide"></button>
+          <div class="snap-dots-bar">
+            <div class="snap-dots"></div>
+          </div>
+          <div class="snap-track">
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/T2S_overflow.png" alt="algebraic reasoning"/>
+                  <p>Construction Process of <span class="mathvista">T2S-Bench</span>.</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/T2S_domain_distribution.png" alt="arithmetic reasoning"/>
+                  <p>Science Domain Taxonomy in <span class="mathvista">T2S-Bench</span>.</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/T2S_type_distribution.png" alt="arithmetic reasoning"/>
+                  <p>Task Taxonomy of <span class="mathvista">T2S-Bench-MR</span>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dataset description text back in narrow column -->
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            All data examples in <span class="mathvista">T2S-Bench</span> are organized into three high-quality subsets targeting different aspects of text-to-structure reasoning:
+            <ul>
+              <li><b>T2S-Train-1.2k</b>: 1,200 verified text-structure pairs for training and instruction tuning.</li>
+              <li><b>T2S-Bench-MR</b>: 500 multi-hop QA examples built from 4 structure-aware reasoning types × 32 templates.</li>
+              <li><b>T2S-Bench-E2E</b>: 87 end-to-end structuring tasks with fixed nodes/links to ensure consistent evaluation.</li>
+            </ul>
+            You can download the dataset on <a href="https://huggingface.co/datasets/AI4Math/MathVista" target="_blank">Hugging Face Dataset</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Statistics</h2>
+        <p>Notable statistics of <img src="static/images/t2s.png" style="width:2.9em;vertical-align: middle" alt="Logo"/>
+          <span class="mathvista">T2S-Bench</span></p>
+        <div class="snap-carousel-shell">
+          <button class="snap-prev-btn" aria-label="Previous slide"></button>
+          <button class="snap-next-btn" aria-label="Next slide"></button>
+          <div class="snap-dots-bar">
+            <div class="snap-dots"></div>
+          </div>
+          <div class="snap-track">
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/t2s_nested_donut.png" alt="algebraic reasoning"/>
+                  <p>Overview of <span class="mathvista">T2S-Bench</span> Sample Distributions.</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/t2s_bar.png" alt="algebraic reasoning"/>
+                  <p>Sample Distributions of different Datasets in <span class="mathvista">T2S-Bench</span>.</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/t2s_heatmap.png" alt="algebraic reasoning"/>
+                  <p>Link F1 scores on MR-Bench-E2E across texts corresponding to reference graphs with varying node counts.</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/t2s_correlation.png" alt="algebraic reasoning"/>
+                  <p>Correlation of model performance between T2S-Bench-MR and Longbench Pro Dataset.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <section class="hero is-small" id="examples" style="background-color: #EBEBE9;">
+    <div class="hero-body has-text-centered">
+      <!-- <h1 class="title is-1 mathvista"><img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>MathVista Dataset</h1> -->
+    <h1 class="title is-1 mathvista">
+      <img src="static/images/t2s.png" style="width:2em;vertical-align: middle" alt="Logo"/>
+      <span class="mathvista" style="vertical-align: middle; font-family: 'Poppins', 'Google Sans', sans-serif; background: linear-gradient(135deg, #4f46e5, #ec4899); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EXAMPLES</span>
+    </h1>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+<section class="section">
+  <div class="container">
+    
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <p class="example-mr-title">Examples for each <b>Major Science Topic</b> in <img src="static/images/t2s.png" style="width:2.9em;vertical-align: middle" alt="Logo"/>
+          <span class="mathvista">T2S-Bench-MR</span></p>
+
+        <div class="snap-carousel-shell example-caption-carousel">
+          <button class="snap-prev-btn" aria-label="Previous slide"></button>
+          <button class="snap-next-btn" aria-label="Next slide"></button>
+          <div class="snap-dots-bar">
+            <div class="snap-dots"></div>
+          </div>
+          <div class="snap-track">
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-CS.png" alt="arithmetic reasoning"/>
+                  <p>Topic 1: Computer Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-ECO.png" alt="algebraic reasoning"/>
+                  <p>Topic 2: Economic Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-ENVIRON.png" alt="geometric reasoning"/>
+                  <p>Topic 3: Environment Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-LIFE.png" alt="logical reasoning"/>
+                  <p>Topic 4: Life Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-PHY.png" alt="numeric reasoning"/>
+                  <p>Topic 5: Physical Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-SOCIAL.png" alt="statistical reasoning"/>
+                  <p>Topic 6: Social Science</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br><br>
+        <p class="example-mr-title">Examples for each <b>Major Science Topic</b> in <img src="static/images/t2s.png" style="width:2.9em;vertical-align: middle" alt="Logo"/>
+          <span class="mathvista">T2S-Bench-E2E</span></p>
+
+        <div class="snap-carousel-shell example-caption-carousel">
+          <button class="snap-prev-btn" aria-label="Previous slide"></button>
+          <button class="snap-next-btn" aria-label="Next slide"></button>
+          <div class="snap-dots-bar">
+            <div class="snap-dots"></div>
+          </div>
+          <div class="snap-track">
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-CS-STRUCT.png" alt="arithmetic reasoning"/>
+                  <p>Topic 1: Computer Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-ECO-STRUCT.png" alt="arithmetic reasoning"/>
+                  <p>Topic 2: Economic Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-ENVIRON-STRUCT.png" alt="arithmetic reasoning"/>
+                  <p>Topic 3: Environment Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-LIFE-STRUCT.png" alt="arithmetic reasoning"/>
+                  <p>Topic 4: Life Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-PHY-STRCUT.png" alt="arithmetic reasoning"/>
+                  <p>Topic 5: Physical Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-SOCIAL-STRUCT.png" alt="arithmetic reasoning"/>
+                  <p>Topic 6: Social Science</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br><br>
+        <p class="example-mr-title">Diagram examples in <b>Minor Science Topic</b> in <img src="static/images/t2s.png" style="width:2.9em;vertical-align: middle" alt="Logo"/>
+          <span class="mathvista">T2S-Bench-E2E</span></p>
+
+        <div class="snap-carousel-shell example-caption-carousel">
+          <button class="snap-prev-btn" aria-label="Previous slide"></button>
+          <button class="snap-next-btn" aria-label="Next slide"></button>
+          <div class="snap-dots-bar">
+            <div class="snap-dots"></div>
+          </div>
+          <div class="snap-track">
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-CS-SYS.png" alt="arithmetic reasoning"/>
+                  <p>Topic 1: Computer Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-CS-AGR.png" alt="arithmetic reasoning"/>
+                  <p>Topic 1: Computer Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-ECO-IMAGE.png" alt="arithmetic reasoning"/>
+                  <p>Topic 2: Economic Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-ENVIRON-IMAGE.png" alt="arithmetic reasoning"/>
+                  <p>Topic 3: Environment Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-LIFE-IMAGE.png" alt="arithmetic reasoning"/>
+                  <p>Topic 4: Life Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-PHY-IMAGE.png" alt="arithmetic reasoning"/>
+                  <p>Topic 5: Physical Science</p>
+                </div>
+              </div>
+            </div>
+            <div class="snap-slide">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static/images/examples/T2S-SOCIAL-IMAGE.png" alt="arithmetic reasoning"/>
+                  <p>Topic 6: Social Science</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- DATASET SECTION -->
+<section class="hero is-small" style="background-color: #EBEBE9;">
+  <div class="hero-body has-text-centered">
+    <!-- <h1 class="title is-1 mathvista"><img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>MathVista Dataset</h1> -->
+  <h1 class="title is-1 mathvista">
+    <img src="static/images/t2s.png" style="width:2em;vertical-align: middle" alt="Logo"/>
+    <span class="mathvista" style="vertical-align: middle; font-family: 'Poppins', 'Google Sans', sans-serif; background: linear-gradient(135deg, #4f46e5, #ec4899); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">APPLICATION</span>
+  </h1>
+  </div>
+</section>
+
+
+
+
+
+<section class="section sot-carousel" id="sot-comparison">
+  <style>
+    .sot-carousel {
+      --sot-primary: #4f46e5;
+      --sot-primary-hover: #4338ca;
+      --sot-gt-color: #0ea5e9;
+      --sot-good-color: #10b981;
+      --sot-bad-color: #f43f5e;
+      --sot-bg-color: #f8fafc;
+      --sot-card-bg: #ffffff;
+      --sot-text-main: #0f172a;
+      --sot-text-muted: #64748b;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+    }
+    .sot-carousel * { box-sizing: border-box; }
+
+    .sot-hero {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2.5rem 1.5rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .sot-hero h2 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--sot-primary), #ec4899);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+    }
+    .sot-hero p { font-size: 1.1rem; color: var(--sot-text-muted); font-family: 'Poppins', 'Google Sans', sans-serif; }
+
+    .sot-provenance {
+      max-width: 980px;
+      margin: 1.25rem auto 0 auto;
+      padding: 1rem 1.25rem;
+      border-radius: 16px;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      color: #333333;
+      font-size: 0.95rem;
+      text-align: left;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    .sot-provenance strong { color: #0f172a; }
+
+    .sot-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem 1.5rem;
+    }
+
+    .sot-carousel-shell {
+      position: relative;
+      margin-top: 2.25rem;
+    }
+
+    .sot-carousel-track {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.25rem 0.25rem 1.75rem 0.25rem;
+      scrollbar-width: none;
+    }
+    .sot-carousel-track::-webkit-scrollbar { display: none; }
+
+    .sot-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      padding: 0.25rem;
+    }
+
+    .sot-slide-header {
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #333333;
+      margin: 0.5rem 0 1.5rem 0;
+      position: relative;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+    }
+    .sot-slide-header::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: var(--sot-primary);
+      border-radius: 2px;
+    }
+
+    .sot-carousel-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.75rem 0 1rem 0;
+      gap: 1rem;
+      user-select: none;
+    }
+
+    .sot-arrow-btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.06);
+      color: #0f172a;
+      font-weight: 700;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+    .sot-arrow-btn:hover { background: rgba(15, 23, 42, 0.10); transform: translateY(-1px); }
+    .sot-arrow-btn:active { transform: translateY(0px); }
+    .sot-arrow-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .sot-dots {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex: 1;
+    }
+    .sot-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.18);
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+    .sot-dot.active { background: var(--sot-primary); transform: scale(1.2); }
+
+    .sot-sample-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      margin-top: 1.25rem;
+    }
+    @media (min-width: 1024px) {
+      .sot-sample-layout { grid-template-columns: 1fr 1fr; align-items: start; }
+    }
+
+    .sot-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0,0,0,0.02);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+    }
+    .sot-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .sot-card.sot-gt-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      margin-bottom: 1.25rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .sot-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+      font-weight: 600;
+    }
+
+    .sot-gt-title { color: var(--sot-gt-color); }
+    .sot-sot-title { color: var(--sot-good-color); }
+    .sot-nosot-title { color: var(--sot-bad-color); }
+
+    .sot-card p {
+      color: #333333;
+      margin-bottom: 1.75rem;
+      font-size: 0.95rem;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+    }
+
+    .sot-img-wrapper { position: relative; display: inline-block; width: 100%; }
+    .sot-gt-card .sot-img-wrapper { max-width: 860px; }
+    .sot-carousel img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      background: #f1f5f9;
+    }
+
+    .sot-box {
+      position: absolute;
+      border: 3px solid;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      z-index: 5;
+      cursor: pointer;
+    }
+    .sot-box:hover { background-color: rgba(255, 255, 255, 0.3); backdrop-filter: blur(2px); }
+
+    .sot-annotation {
+      position: absolute;
+      color: white;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 20px;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      pointer-events: none;
+      letter-spacing: 0.5px;
+    }
+
+    .sot-box-gt { border-color: var(--sot-gt-color); }
+    .sot-bg-gt { background-color: var(--sot-gt-color); }
+    .sot-box-good { border-color: var(--sot-good-color); }
+    .sot-bg-good { background-color: var(--sot-good-color); }
+    .sot-box-bad { border-color: var(--sot-bad-color); }
+    .sot-bg-bad { background-color: var(--sot-bad-color); }
+
+    .sot-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 18px;
+    }
+    .sot-tab-btn {
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #e2e8f0;
+      border: 2px solid transparent;
+      border-radius: 30px;
+      color: #333333;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', 'Google Sans', sans-serif;
+    }
+    .sot-tab-btn:hover { background: #cbd5e1; color: #0f172a; }
+    .sot-tab-btn.active-sot { background: var(--sot-good-color); color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); border-color: var(--sot-good-color); }
+    .sot-tab-btn.active-bad { background: var(--sot-bad-color); color: white; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4); border-color: var(--sot-bad-color); }
+
+    .sot-tab-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .sot-tab-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes sot-pulse-box {
+      from { box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+      to { box-shadow: 0 0 20px currentColor; }
+    }
+    .sot-gt-theme .sot-box { border-color: var(--sot-gt-color); color: var(--sot-gt-color); animation: sot-pulse-box 2s infinite alternate; }
+    .sot-gt-theme .sot-annotation { background-color: var(--sot-gt-color); backdrop-filter: blur(4px); }
+    .sot-sot-theme .sot-box { border-color: var(--sot-good-color); color: var(--sot-good-color); animation: sot-pulse-box 2s infinite alternate; }
+    .sot-sot-theme .sot-annotation { background-color: var(--sot-good-color); backdrop-filter: blur(4px); }
+    .sot-bad-theme .sot-box { border-color: var(--sot-bad-color); color: var(--sot-bad-color); animation: sot-pulse-box 2s infinite alternate; }
+    .sot-bad-theme .sot-annotation { background-color: var(--sot-bad-color); backdrop-filter: blur(4px); }
+  </style>
+
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified intro-highlight-pink">
+          <p>The ability to extract structured information from text can substantially improve the performance of LLMs in a wide range of real-world applications, such as generating figures for scientific papers and creating presentation slides. To provide an intuitive demonstration of this effect, we present a comparison of figures generated from the same scientific text with and without structured reasoning.
+          </p>
+    
+          <p><b>Without Structure-of-Thought:</b> We directly prompt the Nanobanana to generate an overview figure from the input text.
+          </p>
+
+
+          <p><b>With Structure-of-Thought:</b> We first guide Nanobanana to organize the paper into its structural components, producing key points and the relationships among them. The model then generates the figure based on both the text and the structured representation.
+          </p>
+          <p>As shown in the comparison, the figure produced with Structure-of-Thought is significantly closer to a human-created scientific diagram in terms of layout, logical organization, and visual clarity. <b class="sot-key-message">This result indicates that text structuring is a critical capability that models should acquire, as it enables them to more effectively assist users in practical, everyday tasks.</b>
+          </p>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sot-container">
+    <div class="sot-carousel-shell">
+      <div class="sot-carousel-controls">
+        <button class="sot-arrow-btn" id="sotPrevBtn" aria-label="Previous sample">← Prev</button>
+        <div class="sot-dots" aria-label="Sample selector">
+          <button class="sot-dot active" data-index="0" aria-label="Go to Sample 1"></button>
+          <button class="sot-dot" data-index="1" aria-label="Go to Sample 2"></button>
+          <button class="sot-dot" data-index="2" aria-label="Go to Sample 3"></button>
+        </div>
+        <button class="sot-arrow-btn" id="sotNextBtn" aria-label="Next sample">Next →</button>
+      </div>
+
+      <div class="sot-carousel-track" id="sotCarousel">
+        <section class="sot-slide" id="sot-sample-i">
+          <h3 class="sot-slide-header">Sample I: Service Ecosystem</h3>
+
+          <div class="sot-sample-layout">
+            <div class="sot-card sot-gt-card sot-gt-theme">
+              <h3 class="sot-gt-title">✦ Ground Truth Framework</h3>
+              <p>The manual standard features explicit vertical tiering and a distinct central platform.</p>
+              <div class="sot-img-wrapper">
+                <img src="Archive/Sample_I_raw.png" alt="Ecosystem GT">
+                <div class="sot-box sot-box-gt" style="top: 0.8%; left: 3.2%; width: 6.6%; height: 98.2%;"></div>
+                <div class="sot-annotation sot-bg-gt" style="top: -5%; left: 0%;">Explicit Vertical Level Hierarchy</div>
+
+                <div class="sot-box sot-box-gt" style="top: 17.5%; left: 12.8%; width: 72.5%; height: 49.6%;"></div>
+                <div class="sot-annotation sot-bg-gt" style="top: 68%; left: 50%;">Clean Meso Level</div>
+              </div>
+            </div>
+
+            <div>
+              <div id="sotSampleI-sot" class="sot-card sot-tab-content sot-sot-theme">
+                <h3 class="sot-sot-title">✓ With Structure of Thought</h3>
+                <p>Captures structural logic perfectly, mimicking vertical flow and horizontal bands.</p>
+                <div class="sot-img-wrapper">
+                  <img src="Archive/Gemini_SoT_Sample_I.png" alt="Ecosystem SoT">
+                  <div class="sot-box" style="top: 1%; left: 1%; width: 6%; height: 97%;"></div>
+                  <div class="sot-annotation" style="top: -5%; left: 0%;">Matches GT Vertical Labels</div>
+
+                  <div class="sot-box" style="top: 29%; left: 8%; width: 91%; height: 28%;"></div>
+                  <div class="sot-annotation" style="top: 59%; left: 50%;">Clean Horizontal Banding</div>
+                </div>
+              </div>
+
+              <div id="sotSampleI-bad" class="sot-card sot-tab-content active sot-bad-theme">
+                <h3 class="sot-nosot-title">✗ Without Structure of Thought</h3>
+                <p>Fails overarching hierarchy, relying on deep nesting that ruins readability.</p>
+                <div class="sot-img-wrapper">
+                  <img src="Archive/Gemini_without_SoT_Sample_I.png" alt="Ecosystem No SoT">
+                  <div class="sot-box" style="top: 1.5%; left: 20%; width: 62%; height: 24%;"></div>
+                  <div class="sot-annotation" style="top: -5%; left: 22%;">Horizontal Labels break vertical flow</div>
+
+                  <div class="sot-box" style="top: 26.5%; left: 20%; width: 62%; height: 26%;"></div>
+                  <div class="sot-annotation" style="top: 54%; left: 45%;">Heavy nesting causes clutter</div>
+                </div>
+              </div>
+
+              <div class="sot-tabs">
+                <button class="sot-tab-btn active-bad" data-sample="sotSampleI" data-type="bad">✗ Without Structure of Thought</button>
+                <button class="sot-tab-btn" data-sample="sotSampleI" data-type="sot">✓ With Structure of Thought</button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="sot-slide" id="sot-sample-ii">
+          <h3 class="sot-slide-header">Sample II: OpenROAD Pipeline</h3>
+
+          <div class="sot-sample-layout">
+            <div class="sot-card sot-gt-card sot-gt-theme">
+              <h3 class="sot-gt-title">✦ Ground Truth Framework</h3>
+              <p>Notice the clear, sequential <strong>step-by-step pipeline</strong> organized into distinct columns (Inputs → Placement → Routing → Output).</p>
+              <div class="sot-img-wrapper">
+                <img src="Archive/Sample_IV_raw.png" alt="Ground Truth Diagram">
+                <div class="sot-box" style="top: 17%; left: 38%; width: 26%; height: 72%;"></div>
+                <div class="sot-annotation" style="top: 92%; left: 35%;">Explicit sequence: Detail Placement to Detail Routing</div>
+              </div>
+            </div>
+
+            <div>
+              <div id="sotSampleII-sot" class="sot-card sot-tab-content sot-sot-theme">
+                <h3 class="sot-sot-title">✓ With Structure of Thought</h3>
+                <p>By mapping the layout first, the model perfectly captured the three-phase column structure and the exact linear execution sequence of OpenROAD.</p>
+                <div class="sot-img-wrapper">
+                  <img src="Archive/Gemini_SoT_Sample_IV.png" alt="SoT Output">
+                  <div class="sot-box" style="top: 8%; left: 4%; width: 92%; height: 14%;"></div>
+                  <div class="sot-annotation" style="top: 24%; left: 30%;">Explicit 3-Column Phase Headers</div>
+
+                  <div class="sot-box" style="top: 30%; left: 41%; width: 18%; height: 57%;"></div>
+                  <div class="sot-annotation" style="top: 89%; left: 38%;">Preserved linear execution steps</div>
+                </div>
+              </div>
+
+              <div id="sotSampleII-bad" class="sot-card sot-tab-content active sot-bad-theme">
+                <h3 class="sot-nosot-title">✗ Without Structure of Thought</h3>
+                <p>Without an overarching structural thought process, the model lumps complex steps into generic boxes and creates an awkward visual flow.</p>
+                <div class="sot-img-wrapper">
+                  <img src="Archive/Gemini_without_SoT_Sample_IV.png" alt="Non-SoT Output">
+                  <div class="sot-box" style="top: 1%; left: 63.5%; width: 36%; height: 47.5%;"></div>
+                  <div class="sot-annotation" style="top: -4%; left: 60%;">Collapsed generic groups (Lost steps)</div>
+
+                  <div class="sot-box" style="top: 54%; left: 23%; width: 77%; height: 45%;"></div>
+                  <div class="sot-annotation" style="top: 66%; left: 45%;">Awkward zigzag bottom flow</div>
+                </div>
+              </div>
+
+              <div class="sot-tabs">
+                <button class="sot-tab-btn active-bad" data-sample="sotSampleII" data-type="bad">✗ Without Structure of Thought</button>
+                <button class="sot-tab-btn" data-sample="sotSampleII" data-type="sot">✓ With Structure of Thought</button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="sot-slide" id="sot-sample-iii">
+          <h3 class="sot-slide-header">Sample III: Monarch Architecture</h3>
+
+          <div class="sot-sample-layout">
+            <div class="sot-card sot-gt-card sot-gt-theme">
+              <h3 class="sot-gt-title">✦ Ground Truth Framework</h3>
+              <p>Strict use of macro-containers ("GLOBAL" and "Zone-1") to encapsulate complex sub-systems safely.</p>
+              <div class="sot-img-wrapper">
+                <img src="Archive/Sample_III_raw.png" alt="Monarch GT">
+
+                <div class="sot-box sot-box-gt" style="top: 2%; left: 2%; width: 76%; height: 26%;"></div>
+                <div class="sot-annotation sot-bg-gt" style="top: -6%; left: 4%;">Explicit Global Container</div>
+
+                <div class="sot-box sot-box-gt" style="top: 29%; left: 2%; width: 88%; height: 68%;"></div>
+                <div class="sot-annotation sot-bg-gt" style="top: 98%; left: 4%;">Explicit Zonal Container</div>
+              </div>
+            </div>
+
+            <div>
+              <div id="sotSampleIII-sot" class="sot-card sot-tab-content sot-sot-theme">
+                <h3 class="sot-sot-title">✓ With Structure of Thought</h3>
+                <p>Understands hierarchical limits, using dashed boundaries to partition the system flawlessly.</p>
+                <div class="sot-img-wrapper">
+                  <img src="Archive/Gemini_SoT_Sample_III.png" alt="Monarch SoT">
+
+                  <div class="sot-box" style="top: 10%; left: 6%; width: 55%; height: 28%;"></div>
+                  <div class="sot-annotation" style="top: 4%; left: 8%;">Clear Global Encapsulation</div>
+
+                  <div class="sot-box" style="top: 47%; left: 6%; width: 83%; height: 50%;"></div>
+                  <div class="sot-annotation" style="top: 99%; left: 8%;">Clean Zonal Boundary</div>
+                </div>
+              </div>
+
+              <div id="sotSampleIII-bad" class="sot-card sot-tab-content active sot-bad-theme">
+                <h3 class="sot-nosot-title">✗ Without Structure of Thought</h3>
+                <p>Fails container logic, dropping global nodes directly onto the canvas resulting in tangled pathways.</p>
+                <div class="sot-img-wrapper">
+                  <img src="Archive/Gemini_without_SoT_Sample_III.png" alt="Monarch No SoT">
+
+                  <div class="sot-box" style="top: 2%; left: 1%; width: 28%; height: 9%;"></div>
+                  <div class="sot-annotation" style="top: -5%; left: 1%;">Floating Text (No Container)</div>
+
+                  <div class="sot-box" style="top: 8%; left: 49%; width: 49%; height: 55%;"></div>
+                  <div class="sot-annotation" style="top: 65%; left: 50%;">Uncontained / Tangled Routing</div>
+                </div>
+              </div>
+
+              <div class="sot-tabs">
+                <button class="sot-tab-btn active-bad" data-sample="sotSampleIII" data-type="bad">✗ Without Structure of Thought</button>
+                <button class="sot-tab-btn" data-sample="sotSampleIII" data-type="sot">✓ With Structure of Thought</button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchSotTab(sample, type) {
+      const btns = document.querySelectorAll('.sot-tab-btn[data-sample="' + sample + '"]');
+      btns.forEach(b => b.classList.remove('active-sot', 'active-bad'));
+
+      const sot = document.getElementById(sample + '-sot');
+      const bad = document.getElementById(sample + '-bad');
+
+      [sot, bad].forEach(el => {
+        el.classList.remove('active');
+        el.style.display = 'none';
+      });
+
+      if (type === 'sot') {
+        const btn = document.querySelector('.sot-tab-btn[data-sample="' + sample + '"][data-type="sot"]');
+        if (btn) btn.classList.add('active-sot');
+        sot.style.display = 'block';
+        setTimeout(() => sot.classList.add('active'), 20);
+      } else {
+        const btn = document.querySelector('.sot-tab-btn[data-sample="' + sample + '"][data-type="bad"]');
+        if (btn) btn.classList.add('active-bad');
+        bad.style.display = 'block';
+        setTimeout(() => bad.classList.add('active'), 20);
+      }
+    }
+
+    document.querySelectorAll('.sot-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchSotTab(btn.dataset.sample, btn.dataset.type);
+      });
+    });
+
+    const sotCarousel = document.getElementById('sotCarousel');
+    const sotPrevBtn = document.getElementById('sotPrevBtn');
+    const sotNextBtn = document.getElementById('sotNextBtn');
+    const sotDots = Array.from(document.querySelectorAll('.sot-dot'));
+
+    function sotCurrentIndex() {
+      const w = sotCarousel.getBoundingClientRect().width;
+      const idx = Math.round(sotCarousel.scrollLeft / w);
+      return Math.max(0, Math.min(2, idx));
+    }
+
+    function sotUpdateCarouselUI() {
+      const idx = sotCurrentIndex();
+      sotPrevBtn.disabled = idx === 0;
+      sotNextBtn.disabled = idx === 2;
+      sotDots.forEach(d => d.classList.toggle('active', Number(d.dataset.index) === idx));
+    }
+
+    function sotGoTo(idx) {
+      const w = sotCarousel.getBoundingClientRect().width;
+      sotCarousel.scrollTo({ left: idx * w, behavior: 'smooth' });
+    }
+
+    sotPrevBtn.addEventListener('click', () => sotGoTo(sotCurrentIndex() - 1));
+    sotNextBtn.addEventListener('click', () => sotGoTo(sotCurrentIndex() + 1));
+    sotDots.forEach(d => d.addEventListener('click', () => sotGoTo(Number(d.dataset.index))));
+
+    sotCarousel.addEventListener('scroll', () => {
+      window.requestAnimationFrame(sotUpdateCarouselUI);
+    });
+    window.addEventListener('resize', sotUpdateCarouselUI);
+    sotUpdateCarouselUI();
+  </script>
+</section>
+
+<!-- @PAN TODO: bibtex -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+    <pre><code>@inproceedings{ 
+}</code></pre>
+  </div>
+</section>
+
+<section>
+  <div class="section" id="org-banners" style="display:flex">
+    <a href="https://www.duke.edu/" target="_blank" rel="external">
+        <img class="center-block org-banner" src="data/Duke_University_logo.svg.png">
+    </a>
+    <a href="https://www.utexas.edu/" target="blank" class="ext-link">
+        <img class="center-block org-banner org-banner-upscale" src="data/ut-logo.png">
+    </a>
+    <a href="https://www.meta.com/about/?srsltid=AfmBOoqJD_DCF2-MpveIMNmH9KfcPFS5dgRbGEKCySgkcRJcL4ONUtbQ" target="_blank" rel="external">
+        <img class="center-block org-banner org-banner-upscale" src="data/Meta-Logo.png">
+    </a>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is website adapted from <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</footer>
+
+<script>
+  (function () {
+    function initSnapCarousels() {
+      document.querySelectorAll('.snap-carousel-shell').forEach(function (shell) {
+        var track    = shell.querySelector('.snap-track');
+        var prevBtn  = shell.querySelector('.snap-prev-btn');
+        var nextBtn  = shell.querySelector('.snap-next-btn');
+        var dotsWrap = shell.querySelector('.snap-dots');
+        var slides   = Array.from(track.querySelectorAll('.snap-slide'));
+        var total    = slides.length;
+
+        // Build dot indicators
+        dotsWrap.innerHTML = '';
+        slides.forEach(function (_, i) {
+          var d = document.createElement('button');
+          d.className = 'snap-dot' + (i === 0 ? ' active' : '');
+          d.dataset.index = i;
+          d.setAttribute('aria-label', 'Slide ' + (i + 1));
+          dotsWrap.appendChild(d);
+        });
+
+        function currentIndex() {
+          var w = track.getBoundingClientRect().width;
+          if (!w) return 0;
+          return Math.max(0, Math.min(total - 1, Math.round(track.scrollLeft / w)));
+        }
+
+        function updateUI() {
+          var idx = currentIndex();
+          prevBtn.disabled = idx === 0;
+          nextBtn.disabled = idx === total - 1;
+          dotsWrap.querySelectorAll('.snap-dot').forEach(function (d) {
+            d.classList.toggle('active', Number(d.dataset.index) === idx);
+          });
+        }
+
+        function goTo(idx) {
+          var w = track.getBoundingClientRect().width;
+          track.scrollTo({ left: idx * w, behavior: 'smooth' });
+        }
+
+        prevBtn.addEventListener('click', function () { goTo(currentIndex() - 1); });
+        nextBtn.addEventListener('click', function () { goTo(currentIndex() + 1); });
+        dotsWrap.addEventListener('click', function (e) {
+          var dot = e.target.closest('.snap-dot');
+          if (dot) goTo(Number(dot.dataset.index));
+        });
+        track.addEventListener('scroll', function () {
+          window.requestAnimationFrame(updateUI);
+        });
+        window.addEventListener('resize', updateUI);
+        updateUI();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSnapCarousels);
+    } else {
+      initSnapCarousels();
+    }
+  })();
+</script>
+</body>
+</html>
