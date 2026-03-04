@@ -42,7 +42,7 @@ score_table_structure = [
     "Social_Link": 84.39
   },
   {
-    "Model": "Gemini-2.0-flash-lite",
+    "Model": "Gemini-2.0-Flash-Lite",
     "Family": "Gemini",
     "FamilyLogo": "gemini.png",
     "Source": "https://deepmind.google/technologies/gemini/",
@@ -63,7 +63,7 @@ score_table_structure = [
     "Social_Link": 86.08
   },
   {
-    "Model": "Gemini-2.0-flash",
+    "Model": "Gemini-2.0-Flash",
     "Family": "Gemini",
     "FamilyLogo": "gemini.png",
     "Source": "https://deepmind.google/technologies/gemini/",
@@ -210,7 +210,7 @@ score_table_structure = [
     "Social_Link": 85.42
   },
   {
-    "Model": "Claude-sonnet-4-5",
+    "Model": "Claude-Sonnet-4-5",
     "Family": "Claude",
     "FamilyLogo": "claude.png",
     "Source": "https://www.anthropic.com/claude",
@@ -231,7 +231,7 @@ score_table_structure = [
     "Social_Link": 90.46
   },
   {
-    "Model": "Claude-haiku-4-5",
+    "Model": "Claude-Haiku-4-5",
     "Family": "Claude",
     "FamilyLogo": "claude.png",
     "Source": "https://www.anthropic.com/claude",
@@ -252,7 +252,7 @@ score_table_structure = [
     "Social_Link": 88.88
   },
   {
-    "Model": "Claude-4-Sonnet",
+    "Model": "Claude-Sonnet-4",
     "Family": "Claude",
     "FamilyLogo": "claude.png",
     "Source": "https://www.anthropic.com/claude",
@@ -273,7 +273,7 @@ score_table_structure = [
     "Social_Link": 94.85
   },
   {
-    "Model": "Claude-3-haiku",
+    "Model": "Claude-Haiku-3",
     "Family": "Claude",
     "FamilyLogo": "claude.png",
     "Source": "https://www.anthropic.com/claude",

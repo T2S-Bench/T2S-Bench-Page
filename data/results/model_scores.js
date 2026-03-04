@@ -23,7 +23,7 @@ score_table = [
   },
   {
     "Rank": 2,
-    "Model": "Claude-sonnet-4-5 🥈",
+    "Model": "Claude-Sonnet-4-5 🥈",
     "Family": "Claude",
     "FamilyLogo": "claude.png",
     "Source": "https://www.anthropic.com/claude",
@@ -45,7 +45,7 @@ score_table = [
   },
   {
     "Rank": 3,
-    "Model": "Claude-4-Sonnet 🥉",
+    "Model": "Claude-Sonnet-4 🥉",
     "Family": "Claude",
     "FamilyLogo": "claude.png",
     "Source": "https://www.anthropic.com/claude",
@@ -89,7 +89,7 @@ score_table = [
   },
   {
     "Rank": 5,
-    "Model": "Gemini-2.0-flash",
+    "Model": "Gemini-2.0-Flash",
     "Family": "Gemini",
     "FamilyLogo": "gemini.png",
     "Source": "https://deepmind.google/technologies/gemini/",
@@ -111,7 +111,7 @@ score_table = [
   },
   {
     "Rank": 6,
-    "Model": "Gemini-2.0-flash-lite",
+    "Model": "Gemini-2.0-Flash-Lite",
     "Family": "Gemini",
     "FamilyLogo": "gemini.png",
     "Source": "https://deepmind.google/technologies/gemini/",
@@ -265,7 +265,7 @@ score_table = [
   },
   {
     "Rank": 13,
-    "Model": "Claude-haiku-4-5",
+    "Model": "Claude-Haiku-4-5",
     "Family": "Claude",
     "FamilyLogo": "claude.png",
     "Source": "https://www.anthropic.com/claude",
@@ -287,7 +287,7 @@ score_table = [
   },
   {
     "Rank": 14,
-    "Model": "Claude-3-haiku",
+    "Model": "Claude-Haiku-3",
     "Family": "Claude",
     "FamilyLogo": "claude.png",
     "Source": "https://www.anthropic.com/claude",
